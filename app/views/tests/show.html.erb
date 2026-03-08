@@ -1,0 +1,22 @@
+<section class="mx-auto max-w-2xl space-y-6">
+  <header class="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+    <h1 class="font-[DM_Sans] text-3xl font-bold text-zinc-900"><%= @test.name %></h1>
+    <p class="mt-2 text-sm text-zinc-600"><%= @test.description.presence || "Complete the test, then save your result below." %></p>
+    <% if @test.external_url.present? %>
+      <%= link_to "Take the test", @test.external_url, target: "_blank", rel: "noopener", class: "mt-4 inline-flex rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-700" %>
+    <% else %>
+      <p class="mt-4 text-sm font-medium text-zinc-500">No external link yet for this test.</p>
+    <% end %>
+  </header>
+
+  <section class="rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+    <h2 class="font-[DM_Sans] text-xl font-semibold text-zinc-900">Save my result</h2>
+    <%= form_with model: @test_result, url: test_results_path(@test.slug), class: "mt-4 space-y-4" do |f| %>
+      <div>
+        <%= f.label :result_value, "Result", class: "mb-1 block text-sm font-semibold text-zinc-700" %>
+        <%= f.text_field :result_value, class: "w-full rounded-lg border border-stone-300 px-3 py-2 text-sm outline-none ring-teal-200 transition focus:border-teal-500 focus:ring-2", placeholder: "e.g. Lion, INTJ, etc.", required: true %>
+      </div>
+      <%= f.submit "Save my result", class: "rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-700" %>
+    <% end %>
+  </section>
+</section>

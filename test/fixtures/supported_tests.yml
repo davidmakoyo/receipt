@@ -1,0 +1,11 @@
+one:
+  name: Animal in You
+  slug: animal-in-you
+  external_url: ""
+  description: Real test
+
+two:
+  name: Stub Test Alpha
+  slug: stub-test-alpha
+  external_url: ""
+  description: Stub

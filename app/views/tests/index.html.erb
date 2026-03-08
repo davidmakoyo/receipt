@@ -1,0 +1,18 @@
+<section class="space-y-6">
+  <header>
+    <h1 class="font-[DM_Sans] text-3xl font-bold text-zinc-900">Supported tests</h1>
+    <p class="mt-1 text-sm text-zinc-600">Take a test externally, then save your result here.</p>
+  </header>
+
+  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <% @tests.each do |test| %>
+      <article class="flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
+        <h2 class="font-[DM_Sans] text-xl font-semibold text-zinc-900"><%= test.name %></h2>
+        <p class="mt-2 flex-1 text-sm text-zinc-600"><%= test.description.presence || "Save and track your result for this test." %></p>
+        <div class="mt-4">
+          <%= link_to "View test", test_path(test.slug), class: "inline-flex rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-700" %>
+        </div>
+      </article>
+    <% end %>
+  </div>
+</section>
