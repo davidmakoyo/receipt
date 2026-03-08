@@ -9,6 +9,5 @@ module FriendshipCollage2
     config.load_defaults 8.1
 
     config.autoload_lib(ignore: %w[assets tasks])
-
   end
 end

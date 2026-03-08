@@ -1,25 +1,23 @@
 
 Devise.setup do |config|
-
-
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-
-
-
-  require 'devise/orm/active_record'
+  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
 
 
 
-  config.case_insensitive_keys = [:email]
+  require "devise/orm/active_record"
 
-  config.strip_whitespace_keys = [:email]
+
+
+  config.case_insensitive_keys = [ :email ]
+
+  config.strip_whitespace_keys = [ :email ]
 
 
 
 
 
 
-  config.skip_session_storage = [:http_auth]
+  config.skip_session_storage = [ :http_auth ]
 
 
 
@@ -65,6 +63,4 @@ Devise.setup do |config|
 
   config.responder.error_status = :unprocessable_content
   config.responder.redirect_status = :see_other
-
-
 end
