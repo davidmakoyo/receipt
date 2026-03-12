@@ -1,6 +1,6 @@
-service: friendship_collage_2
+service: receipt_rescue
 
-image: friendship_collage_2
+image: receipt_rescue
 
 servers:
   web:
@@ -29,7 +29,7 @@ aliases:
   dbc: app exec --interactive --reuse "bin/rails dbconsole --include-password"
 
 volumes:
-  - "friendship_collage_2_storage:/rails/storage"
+  - "receipt_rescue_storage:/rails/storage"
 
 asset_path: /rails/public/assets
 
