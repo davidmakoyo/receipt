@@ -47,4 +47,4 @@ end
 
 gem "devise", "~> 5.0"
 
-gem "prawn", "~> 2.4"
+gem "prawn", "~> 2.5"
