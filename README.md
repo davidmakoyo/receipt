@@ -1,24 +1,14 @@
-# Friendship Collage
+# Receipt Rescue
 
-Friendship Collage is a Ruby on Rails app where users can sign up, save personality test results, add friends, and view collage-style tables of their own and friends' results.
+Receipt Rescue is a Ruby on Rails app for tracking personal spending with uploaded receipts. Users can save purchase details, attach receipt images, and view a simple dashboard of monthly totals and category spend.
 
-## Features
+## MVP Features
 
 - User authentication with Devise
-- Save one result per user per test
-- View your own collage
-- Add friends by username
-- View friends' collages
-- Styled UI with Tailwind CSS
-
-## Current Supported Tests
-
-- Spotify Wrapped #1
-- Animal in You
-- Love Language
-- Hogwarts house
-- Political Compass
-- Travel Style
+- Create, edit, view, and delete receipts
+- Upload a receipt image with each entry
+- Track merchant, amount, purchase date, and category
+- Dashboard summary for month-to-date totals and category breakdown
 
 ## Tech Stack
 
@@ -26,6 +16,7 @@ Friendship Collage is a Ruby on Rails app where users can sign up, save personal
 - SQLite
 - Devise
 - Tailwind CSS
+- Active Storage
 
 ## Prerequisites
 
@@ -36,14 +27,13 @@ Friendship Collage is a Ruby on Rails app where users can sign up, save personal
 ## Local Setup
 
 ```bash
-git clone https://github.com/davidmakoyo/friendship-collage.git
-cd friendship-collage
 bundle install
 bin/rails db:prepare
-bin/dev
+bin/rails db:seed
+bin/rails server -p 4000
 ```
 
-Then open: `http://localhost:3000`
+Open `http://localhost:4000`.
 
 ## Running Tests
 
@@ -51,25 +41,20 @@ Then open: `http://localhost:3000`
 bin/rails test
 ```
 
-## Seed Data
-
-To reload supported tests:
-
-```bash
-bin/rails db:seed
-```
-
 ## Auth Routes
 
 - Sign up: `/users/sign_up`
 - Sign in: `/users/sign_in`
 
-## Notes
+## Seed Data
 
-- If `bin/dev` fails, try:
+`bin/rails db:seed` creates:
 
-```bash
-bundle exec foreman start -f Procfile.dev
-```
+- Demo user: `demo@receiptrescue.app`
+- Demo password: `password123`
+- Sample receipts for dashboard testing
 
-- If Ruby version errors appear, ensure your Ruby version matches `.ruby-version`.
+## Current Limitations
+
+- Data entry is manual (no OCR yet)
+- No scheduled reminder emails/jobs yet

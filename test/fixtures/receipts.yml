@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  merchant: Whole Foods
+  amount: 42.55
+  purchase_date: <%= Date.current %>
+  category: Groceries
+  notes: Weekly groceries
+
+two:
+  user: two
+  merchant: Chipotle
+  amount: 14.20
+  purchase_date: <%= Date.current.prev_month %>
+  category: Dining
+  notes: Lunch

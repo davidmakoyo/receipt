@@ -1,0 +1,61 @@
+<% content_for :title, "Dashboard" %>
+
+<section class="mb-8">
+  <div class="mb-2 flex items-center justify-between">
+    <h1 class="font-[Space_Grotesk] text-3xl font-bold tracking-tight text-slate-100">Spending Overview</h1>
+    <%= link_to "Add Receipt", new_receipt_path, class: "rounded-full border border-indigo-300/40 bg-indigo-500/20 px-4 py-2 text-sm font-semibold text-indigo-100 hover:bg-indigo-500/30" %>
+  </div>
+  <p class="text-sm text-slate-300">Track spending with a cleaner, faster receipt workflow.</p>
+</section>
+
+<section class="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  <article class="rounded-3xl border border-slate-700/60 bg-slate-900/70 p-5 shadow-xl shadow-black/20">
+    <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">This month total</p>
+    <p class="mt-2 text-2xl font-bold text-cyan-200"><%= number_to_currency(@this_month_total) %></p>
+  </article>
+  <article class="rounded-3xl border border-slate-700/60 bg-slate-900/70 p-5 shadow-xl shadow-black/20">
+    <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Receipts this month</p>
+    <p class="mt-2 text-2xl font-bold text-violet-200"><%= @receipt_count %></p>
+  </article>
+  <article class="rounded-3xl border border-slate-700/60 bg-slate-900/70 p-5 shadow-xl shadow-black/20">
+    <p class="text-xs font-semibold uppercase tracking-wide text-slate-400">Categories used</p>
+    <p class="mt-2 text-2xl font-bold text-emerald-200"><%= @category_totals.keys.size %></p>
+  </article>
+</section>
+
+<section class="mb-8 grid gap-6 lg:grid-cols-2">
+  <article class="rounded-3xl border border-slate-700/60 bg-slate-900/70 p-5 shadow-xl shadow-black/20">
+    <h2 class="font-[Space_Grotesk] text-xl font-semibold text-slate-100">Spend by category</h2>
+    <% if @category_totals.any? %>
+      <ul class="mt-4 space-y-3">
+        <% @category_totals.sort_by { |_category, total| -total }.each do |category, total| %>
+          <li class="flex items-center justify-between rounded-xl border border-slate-700/50 bg-slate-800/70 px-3 py-2">
+            <span class="text-sm font-medium text-slate-200"><%= category %></span>
+            <span class="text-sm font-semibold text-cyan-200"><%= number_to_currency(total) %></span>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="mt-4 text-sm text-slate-400">No receipts for this month yet.</p>
+    <% end %>
+  </article>
+
+  <article class="rounded-3xl border border-slate-700/60 bg-slate-900/70 p-5 shadow-xl shadow-black/20">
+    <h2 class="font-[Space_Grotesk] text-xl font-semibold text-slate-100">Recent receipts</h2>
+    <% if @recent_receipts.any? %>
+      <ul class="mt-4 space-y-3">
+        <% @recent_receipts.each do |receipt| %>
+          <li class="flex items-center justify-between rounded-xl border border-slate-700/50 bg-slate-800/70 px-3 py-2">
+            <div>
+              <%= link_to receipt.merchant, receipt_path(receipt), class: "text-sm font-semibold text-cyan-300 hover:text-cyan-200" %>
+              <p class="text-xs text-slate-400"><%= receipt.category %> - <%= receipt.purchase_date.strftime("%b %d, %Y") %></p>
+            </div>
+            <span class="text-sm font-semibold text-violet-200"><%= number_to_currency(receipt.amount) %></span>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="mt-4 text-sm text-slate-400">Start by adding your first receipt.</p>
+    <% end %>
+  </article>
+</section>
